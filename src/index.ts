@@ -1,12 +1,12 @@
 import 'dotenv/config';
-import express from 'express';
-import router from './router';
+import mongoose from 'mongoose';
+import server from './server';
 
-const app = express();
-app.use(express.json());
-
-app.use(router);
-
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on port ${process.env.PORT}`);
-});
+mongoose
+  .connect(process.env.MONGO_URL || 'mongodb://localhost:27017/shopper')
+  .then(() => {
+    server.listen(process.env.PORT || 80, () => {
+      console.log(`Server is running on port ${process.env.PORT || 80}`);
+    });
+  })
+  .catch(() => console.log('Erro ao conectar ao MongoDB'));

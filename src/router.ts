@@ -1,17 +1,27 @@
 import { Router } from 'express';
+import {
+  base64ToBufferMiddleware,
+  validateUploadMiddleware,
+} from './app/middlewares';
+import { getMeasureValueMiddleware } from './app/middlewares/getMeasureValueMiddleware';
+import { uploadImageMiddleware } from './app/middlewares/uploadImageMiddleware';
+import {
+  confirmMeasure,
+  listMeasure,
+  uploadMeasure,
+} from './app/useCases/Measures';
 
-const router = Router();
+export const router = Router();
 
-router.post('/upload', (req, res) => {
-  res.send('rota do upload');
-});
+router.post(
+  '/upload',
+  validateUploadMiddleware,
+  base64ToBufferMiddleware,
+  uploadImageMiddleware,
+  getMeasureValueMiddleware,
+  uploadMeasure,
+);
 
-router.patch('/confirm', (req, res) => {
-  res.send('rota do confirm');
-});
+router.patch('/confirm', confirmMeasure);
 
-router.get('/:customer_code/list', (req, res) => {
-  res.send('rota do list');
-});
-
-export default router;
+router.get('/:customer_code/list', listMeasure);
