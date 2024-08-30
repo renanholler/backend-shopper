@@ -1,0 +1,21 @@
+services:
+  mongo:
+    image: mongo:5.0
+    container_name: backend-shopper-mongo
+    ports:
+      - '27017:27017'
+
+  backend:
+    build: .
+    container_name: backend-shopper
+    ports:
+      - '80:80'
+    environment:
+      MONGO_URL: mongodb://mongo:27017/shopper
+      PORT: 80
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+    depends_on:
+      - mongo
+    volumes:
+      - .:/app
+      - /app/node_modules
