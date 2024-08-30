@@ -11,7 +11,7 @@ export const getMeasureValue = async (
   try {
     const { image_url, mime_type } = req.body;
     const value = await analyzeImage(image_url, mime_type);
-    req.body.measure_value = parseFloat(value);
+    req.body.measure_value = parseInt(value);
     next();
   } catch (error) {
     console.error('Erro ao analisar imagem:', error);
