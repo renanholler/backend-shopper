@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { analyzeImage } from '../services/geminiAnalysisService';
+import { analyzeImage } from '../../services/geminiAnalysisService';
 
 export async function getMeasureValueMiddleware(
   req: Request,
@@ -7,6 +7,7 @@ export async function getMeasureValueMiddleware(
   next: NextFunction,
 ) {
   const { image_url, mime_type } = req.body;
-  req.body.measure_value = await analyzeImage(image_url, mime_type);
+  const value = await analyzeImage(image_url, mime_type);
+  req.body.measure_value = parseInt(value);
   next();
 }

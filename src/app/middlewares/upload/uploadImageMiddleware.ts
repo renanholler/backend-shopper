@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import fs from 'fs';
 import path from 'path';
-import { uploadImage } from '../services/geminiUploadService';
+import { uploadImage } from '../../services/geminiUploadService';
 
 export async function uploadImageMiddleware(
   req: Request,

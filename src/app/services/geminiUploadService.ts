@@ -10,9 +10,14 @@ export async function uploadImage(
   displayName: string,
   mimeType: string,
 ): Promise<string> {
-  const uploadResponse = await fileManager.uploadFile(filePath, {
-    mimeType: `image/${mimeType}`,
-    displayName,
-  });
-  return uploadResponse.file.uri;
+  try {
+    const uploadResponse = await fileManager.uploadFile(filePath, {
+      mimeType: `image/${mimeType}`,
+      displayName,
+    });
+    return uploadResponse.file.uri;
+  } catch (error) {
+    console.error('Error uploading image:', error);
+    throw new Error('Failed to upload image');
+  }
 }

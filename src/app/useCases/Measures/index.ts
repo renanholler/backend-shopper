@@ -1,5 +1,5 @@
 import { confirmMeasure } from './confirmMeasure';
-import { listMeasure } from './listMeasures';
+import { listMeasures } from './listMeasures';
 import { uploadMeasure } from './uploadMeasure';
 
-export { confirmMeasure, listMeasure, uploadMeasure };
+export { confirmMeasure, listMeasures, uploadMeasure };
