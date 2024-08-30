@@ -1,7 +1,12 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { Measure } from '../../models/Measure';
+import { createError } from '../../utils/createError';
 
-export async function uploadMeasure(req: Request, res: Response) {
+export async function uploadMeasure(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
   try {
     const {
       image_url,
@@ -28,6 +33,8 @@ export async function uploadMeasure(req: Request, res: Response) {
     });
   } catch (error) {
     console.error('Error uploading measure:', error);
-    res.status(500).json({ error: 'Erro interno do servidor' });
+    next(
+      createError(500, 'INTERNAL_SERVER_ERROR', 'Erro interno do servidor.'),
+    );
   }
 }

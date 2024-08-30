@@ -1,13 +1,13 @@
-import { base64ToBufferMiddleware } from './base64ToBufferMiddleware';
-import { checkDuplicateMeasureMiddleware } from './checkDuplicateMeasureMiddleware';
-import { getMeasureValueMiddleware } from './getMeasureValueMiddleware';
-import { uploadImageMiddleware } from './uploadImageMiddleware';
-import { validateUploadMiddleware } from './validateUploadMiddleware';
+import { base64ToBuffer } from './base64ToBuffer';
+import { checkDuplicateMeasure } from './checkDuplicateMeasure';
+import { getMeasureValue } from './getMeasureValue';
+import { uploadBill } from './uploadBill';
+import { validateUpload } from './validateUpload';
 
 export {
-  base64ToBufferMiddleware,
-  checkDuplicateMeasureMiddleware,
-  getMeasureValueMiddleware,
-  uploadImageMiddleware,
-  validateUploadMiddleware,
+  base64ToBuffer,
+  checkDuplicateMeasure,
+  getMeasureValue,
+  uploadBill,
+  validateUpload,
 };

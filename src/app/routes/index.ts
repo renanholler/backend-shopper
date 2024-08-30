@@ -1,5 +1,5 @@
-import { confirmRoutes } from './confirmRoutes';
-import { listRoutes } from './listRoutes';
-import { uploadRoutes } from './uploadRoutes';
+import { confirmRoute } from './confirmRoute';
+import { listRoute } from './listRoute';
+import { uploadRoute } from './uploadRoute';
 
-export { confirmRoutes, listRoutes, uploadRoutes };
+export { confirmRoute, listRoute, uploadRoute };

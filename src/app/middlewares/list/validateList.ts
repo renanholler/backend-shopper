@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
+import { createError } from '../../utils/createError';
 
-export async function validateListMiddleware(
+export async function validateList(
   req: Request,
   res: Response,
   next: NextFunction,
@@ -10,10 +11,9 @@ export async function validateListMiddleware(
   if (measure_type && typeof measure_type === 'string') {
     measure_type = measure_type.toUpperCase();
     if (!['WATER', 'GAS'].includes(measure_type)) {
-      return res.status(400).json({
-        error_code: 'INVALID_DATA',
-        error_description: 'Tipo de medição não permitida.',
-      });
+      return next(
+        createError(400, 'INVALID_DATA', 'Tipo de medição não permitida.'),
+      );
     }
     req.query.measure_type = measure_type;
   }

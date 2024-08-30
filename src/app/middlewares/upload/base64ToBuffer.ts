@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { extractMimeType } from '../../utils/base64Validator';
 import { convertBase64ToBuffer } from '../../utils/convertBase64ToBuffer';
 
-export function base64ToBufferMiddleware(
+export function base64ToBuffer(
   req: Request,
   res: Response,
   next: NextFunction,

@@ -1,8 +1,11 @@
 import { Router } from 'express';
-import { confirmRoutes, listRoutes, uploadRoutes } from './app/routes';
+import errorHandler from './app/middlewares/errorHandler';
+import { confirmRoute, listRoute, uploadRoute } from './app/routes';
 
 export const router = Router();
 
-router.use(uploadRoutes);
-router.use(confirmRoutes);
-router.use(listRoutes);
+router.use(uploadRoute);
+router.use(confirmRoute);
+router.use(listRoute);
+
+router.use(errorHandler);

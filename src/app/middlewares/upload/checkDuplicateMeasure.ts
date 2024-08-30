@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 import { Measure } from '../../models/Measure';
+import { createError } from '../../utils/createError';
 
-export async function checkDuplicateMeasureMiddleware(
+export async function checkDuplicateMeasure(
   req: Request,
   res: Response,
   next: NextFunction,
@@ -25,15 +26,14 @@ export async function checkDuplicateMeasureMiddleware(
     });
 
     if (existingMeasure) {
-      return res.status(409).json({
-        error_code: 'DOUBLE_REPORT',
-        error_description: 'Leitura do mês já realizada',
-      });
+      return next(
+        createError(409, 'DOUBLE_REPORT', 'Leitura do mês já realizada'),
+      );
     }
 
     next();
   } catch (error) {
     console.error('Erro ao verificar duplicação:', error);
-    res.status(500).json({ error: 'Erro interno do servidor' });
+    next(createError(500, 'INTERNAL_SERVER_ERROR', 'Erro interno do servidor'));
   }
 }

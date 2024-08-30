@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { analyzeImage } from '../../services/geminiAnalysisService';
 
-export async function getMeasureValueMiddleware(
+export async function getMeasureValue(
   req: Request,
   res: Response,
   next: NextFunction,

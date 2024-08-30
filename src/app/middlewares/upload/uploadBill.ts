@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { uploadImage } from '../../services/geminiUploadService';
 
-export async function uploadImageMiddleware(
+export async function uploadBill(
   req: Request,
   res: Response,
   next: NextFunction,

@@ -1,5 +1,6 @@
 import { GoogleAIFileManager } from '@google/generative-ai/server';
 import 'dotenv/config';
+import { createError } from '../utils/createError';
 
 const fileManager = new GoogleAIFileManager(
   process.env.GEMINI_API_KEY as string,
@@ -15,9 +16,18 @@ export async function uploadImage(
       mimeType: `image/${mimeType}`,
       displayName,
     });
-    return uploadResponse.file.uri;
+
+    if (uploadResponse?.file?.uri) {
+      return uploadResponse.file.uri;
+    } else {
+      throw createError(
+        500,
+        'UPLOAD_ERROR',
+        'O upload não retornou o URI do arquivo como esperado.',
+      );
+    }
   } catch (error) {
-    console.error('Error uploading image:', error);
-    throw new Error('Failed to upload image');
+    console.error('Erro ao fazer upload da imagem:', error);
+    throw createError(500, 'UPLOAD_FAILED', 'Falha ao fazer upload da imagem.');
   }
 }
