@@ -1,8 +1,4 @@
-export const createError = (
-  statusCode: number,
-  errorCode: string,
-  errorDescription: string,
-) => {
+export const createError = (statusCode: number, errorCode: string, errorDescription: string) => {
   return {
     statusCode,
     error_code: errorCode,

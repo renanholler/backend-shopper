@@ -32,9 +32,7 @@ describe('validateList Middleware', () => {
 
     validateList(req as Request, res as Response, next);
 
-    expect(next).toHaveBeenCalledWith(
-      createError(400, 'INVALID_DATA', 'Tipo de medição não permitida.'),
-    );
+    expect(next).toHaveBeenCalledWith(createError(400, 'INVALID_DATA', 'Tipo de medição não permitida.'));
   });
 
   it('should uppercase measure_type and call next', () => {

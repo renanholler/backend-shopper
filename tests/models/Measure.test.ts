@@ -2,9 +2,7 @@ import mongoose from 'mongoose';
 import { Measure } from '../../src/app/models/Measure';
 
 beforeAll(async () => {
-  await mongoose.connect(
-    process.env.MONGO_URL || 'mongodb://localhost:27017/testdb',
-  );
+  await mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost:27017/testdb');
 });
 
 afterAll(async () => {

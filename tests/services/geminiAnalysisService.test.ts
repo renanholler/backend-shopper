@@ -13,7 +13,6 @@ describe('analyzeImage', () => {
   });
 
   it('should return the text response after successful analysis', async () => {
-    // Mock the function to return the expected response
     (analyzeImage as jest.Mock).mockResolvedValue('100.00');
 
     const result = await analyzeImage(uri, mimeType);
@@ -21,24 +20,14 @@ describe('analyzeImage', () => {
   });
 
   it('should throw an error if the response does not contain text', async () => {
-    // Mock the function to throw an error
-    (analyzeImage as jest.Mock).mockRejectedValue(
-      new Error('A resposta do modelo não foi como esperado.'),
-    );
+    (analyzeImage as jest.Mock).mockRejectedValue(new Error('A resposta do modelo não foi como esperado.'));
 
-    await expect(analyzeImage(uri, mimeType)).rejects.toThrow(
-      'A resposta do modelo não foi como esperado.',
-    );
+    await expect(analyzeImage(uri, mimeType)).rejects.toThrow('A resposta do modelo não foi como esperado.');
   });
 
   it('should call createError and throw when analysis fails', async () => {
-    // Mock the function to throw a generic error
-    (analyzeImage as jest.Mock).mockRejectedValue(
-      new Error('Falha ao analisar a imagem.'),
-    );
+    (analyzeImage as jest.Mock).mockRejectedValue(new Error('Falha ao analisar a imagem.'));
 
-    await expect(analyzeImage(uri, mimeType)).rejects.toThrow(
-      'Falha ao analisar a imagem.',
-    );
+    await expect(analyzeImage(uri, mimeType)).rejects.toThrow('Falha ao analisar a imagem.');
   });
 });

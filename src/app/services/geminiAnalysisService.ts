@@ -4,10 +4,7 @@ import { createError } from '../utils/createError';
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
 
-export async function analyzeImage(
-  uri: string,
-  mimeType: string,
-): Promise<string> {
+export async function analyzeImage(uri: string, mimeType: string): Promise<string> {
   try {
     const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
     const result = await model.generateContent([
@@ -24,18 +21,10 @@ export async function analyzeImage(
     if (result?.response?.text) {
       return result.response.text();
     } else {
-      throw createError(
-        500,
-        'AI_RESPONSE_ERROR',
-        'A resposta do modelo não foi como esperado.',
-      );
+      throw createError(500, 'AI_RESPONSE_ERROR', 'A resposta do modelo não foi como esperado.');
     }
   } catch (error) {
     console.error('Erro ao analisar imagem:', error);
-    throw createError(
-      500,
-      'ANALYZE_IMAGE_FAILED',
-      'Falha ao analisar a imagem.',
-    );
+    throw createError(500, 'ANALYZE_IMAGE_FAILED', 'Falha ao analisar a imagem.');
   }
 }

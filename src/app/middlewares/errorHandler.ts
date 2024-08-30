@@ -6,17 +6,8 @@ interface ApiError {
   error_description: string;
 }
 
-const errorHandler = (
-  err: Error | ApiError,
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
-  if (
-    'statusCode' in err &&
-    'error_code' in err &&
-    'error_description' in err
-  ) {
+const errorHandler = (err: Error | ApiError, req: Request, res: Response, next: NextFunction) => {
+  if ('statusCode' in err && 'error_code' in err && 'error_description' in err) {
     res.status(err.statusCode).json({
       error_code: err.error_code,
       error_description: err.error_description,

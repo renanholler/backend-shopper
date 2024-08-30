@@ -2,11 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { Measure } from '../../models/Measure';
 import { createError } from '../../utils/createError';
 
-export async function checkDuplicateMeasure(
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) {
+export async function checkDuplicateMeasure(req: Request, res: Response, next: NextFunction) {
   const { customer_code, measure_datetime, measure_type } = req.body;
 
   try {
@@ -18,17 +14,12 @@ export async function checkDuplicateMeasure(
       customer_code,
       measure_type,
       $expr: {
-        $and: [
-          { $eq: [{ $year: '$measure_datetime' }, year] },
-          { $eq: [{ $month: '$measure_datetime' }, month] },
-        ],
+        $and: [{ $eq: [{ $year: '$measure_datetime' }, year] }, { $eq: [{ $month: '$measure_datetime' }, month] }],
       },
     });
 
     if (existingMeasure) {
-      return next(
-        createError(409, 'DOUBLE_REPORT', 'Leitura do mês já realizada'),
-      );
+      return next(createError(409, 'DOUBLE_REPORT', 'Leitura do mês já realizada'));
     }
 
     next();

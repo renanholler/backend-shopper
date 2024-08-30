@@ -1,7 +1,4 @@
-import {
-  extractMimeType,
-  isValidBase64,
-} from '../../src/app/utils/base64Validator';
+import { extractMimeType, isValidBase64 } from '../../src/app/utils/base64Validator';
 
 describe('Base64 Validator Utilities', () => {
   describe('isValidBase64', () => {
@@ -16,8 +13,7 @@ describe('Base64 Validator Utilities', () => {
     });
 
     it('should return false for base64 strings with unsupported MIME types', () => {
-      const unsupportedBase64 =
-        'data:image/gif;base64,R0lGODlhPQBEAPeoAJosM....';
+      const unsupportedBase64 = 'data:image/gif;base64,R0lGODlhPQBEAPeoAJosM....';
       expect(isValidBase64(unsupportedBase64)).toBe(false);
     });
   });
@@ -30,17 +26,12 @@ describe('Base64 Validator Utilities', () => {
 
     it('should throw an error if the base64 string format is invalid', () => {
       const invalidBase64 = 'invalid_base64_string';
-      expect(() => extractMimeType(invalidBase64)).toThrow(
-        'Failed to extract MIME type',
-      );
+      expect(() => extractMimeType(invalidBase64)).toThrow('Failed to extract MIME type');
     });
 
     it('should throw an error if the base64 string has unsupported MIME type', () => {
-      const unsupportedBase64 =
-        'data:image/gif;base64,R0lGODlhPQBEAPeoAJosM....';
-      expect(() => extractMimeType(unsupportedBase64)).toThrow(
-        'Failed to extract MIME type',
-      );
+      const unsupportedBase64 = 'data:image/gif;base64,R0lGODlhPQBEAPeoAJosM....';
+      expect(() => extractMimeType(unsupportedBase64)).toThrow('Failed to extract MIME type');
     });
   });
 });

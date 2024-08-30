@@ -42,11 +42,7 @@ describe('validateConfirm Middleware', () => {
     await validateConfirm(req as Request, res as Response, next);
 
     expect(next).toHaveBeenCalledWith(
-      createError(
-        400,
-        'INVALID_DATA',
-        'O ID da leitura deve ser uma string não vazia.',
-      ),
+      createError(400, 'INVALID_DATA', 'O ID da leitura deve ser uma string não vazia.'),
     );
   });
 
@@ -59,11 +55,7 @@ describe('validateConfirm Middleware', () => {
     await validateConfirm(req as Request, res as Response, next);
 
     expect(next).toHaveBeenCalledWith(
-      createError(
-        400,
-        'INVALID_DATA',
-        'O valor da leitura confirmada deve ser um número inteiro.',
-      ),
+      createError(400, 'INVALID_DATA', 'O valor da leitura confirmada deve ser um número inteiro.'),
     );
   });
 
@@ -77,9 +69,7 @@ describe('validateConfirm Middleware', () => {
 
     await validateConfirm(req as Request, res as Response, next);
 
-    expect(next).toHaveBeenCalledWith(
-      createError(404, 'MEASURE_NOT_FOUND', 'Leitura não encontrada'),
-    );
+    expect(next).toHaveBeenCalledWith(createError(404, 'MEASURE_NOT_FOUND', 'Leitura não encontrada'));
   });
 
   it('should return an error if measure is already confirmed', async () => {
@@ -94,8 +84,6 @@ describe('validateConfirm Middleware', () => {
 
     await validateConfirm(req as Request, res as Response, next);
 
-    expect(next).toHaveBeenCalledWith(
-      createError(409, 'CONFIRMATION_DUPLICATE', 'Leitura do mês já realizada'),
-    );
+    expect(next).toHaveBeenCalledWith(createError(409, 'CONFIRMATION_DUPLICATE', 'Leitura do mês já realizada'));
   });
 });

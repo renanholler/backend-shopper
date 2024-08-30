@@ -3,11 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { uploadImage } from '../../services/geminiUploadService';
 
-export async function uploadBill(
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) {
+export async function uploadBill(req: Request, res: Response, next: NextFunction) {
   const { image, mime_type } = req.body;
   const tempFilePath = path.join(__dirname, `temp_image.${mime_type}`);
   try {

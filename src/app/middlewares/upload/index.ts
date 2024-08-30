@@ -4,10 +4,4 @@ import { getMeasureValue } from './getMeasureValue';
 import { uploadBill } from './uploadBill';
 import { validateUpload } from './validateUpload';
 
-export {
-  base64ToBuffer,
-  checkDuplicateMeasure,
-  getMeasureValue,
-  uploadBill,
-  validateUpload,
-};
+export { base64ToBuffer, checkDuplicateMeasure, getMeasureValue, uploadBill, validateUpload };

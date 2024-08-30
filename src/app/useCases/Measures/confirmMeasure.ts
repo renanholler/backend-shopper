@@ -2,11 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { Measure } from '../../models/Measure';
 import { createError } from '../../utils/createError';
 
-export async function confirmMeasure(
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) {
+export async function confirmMeasure(req: Request, res: Response, next: NextFunction) {
   try {
     const { confirmed_value, measure_uuid } = req.body;
     const measure = await Measure.findOne({ measure_uuid });
@@ -16,8 +12,6 @@ export async function confirmMeasure(
     res.status(200).send({ success: true });
   } catch (error) {
     console.error('Error confirming measure:', error);
-    next(
-      createError(500, 'INTERNAL_SERVER_ERROR', 'Erro interno do servidor.'),
-    );
+    next(createError(500, 'INTERNAL_SERVER_ERROR', 'Erro interno do servidor.'));
   }
 }

@@ -17,8 +17,7 @@ describe('convertBase64ToBuffer', () => {
   });
 
   it('should not throw an error if the base64 string has an unsupported format', () => {
-    const unsupportedBase64 =
-      'data:application/pdf;base64,JVBERi0xLjQKJcTl8u...';
+    const unsupportedBase64 = 'data:application/pdf;base64,JVBERi0xLjQKJcTl8u...';
     const buffer = convertBase64ToBuffer(unsupportedBase64);
     expect(buffer).toBeInstanceOf(Buffer);
   });
