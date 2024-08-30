@@ -10,8 +10,13 @@ export async function uploadBill(
 ) {
   const { image, mime_type } = req.body;
   const tempFilePath = path.join(__dirname, `temp_image.${mime_type}`);
-  fs.writeFileSync(tempFilePath, image);
-  req.body.image_url = await uploadImage(tempFilePath, 'Bill', mime_type);
-  fs.unlinkSync(tempFilePath);
+  try {
+    fs.writeFileSync(tempFilePath, image);
+    req.body.image_url = await uploadImage(tempFilePath, 'Bill', mime_type);
+  } catch (error) {
+    return next(error);
+  } finally {
+    fs.unlinkSync(tempFilePath);
+  }
   next();
 }
