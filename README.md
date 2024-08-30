@@ -1,6 +1,6 @@
 # Backend Shopper
 
-Este repositório é o backend de uma aplicação desenvolvida para gerenciar a leitura individualizada de consumo de água e gás utilizando inteligência artificial para análise de imagens. A aplicação está totalmente dockerizada e integra-se com a API do Google Gemini para análise das imagens enviadas.
+A aplicação está totalmente dockerizada e integra-se com a API do Google Gemini para análise das imagens enviadas.
 
 ## Tecnologias Utilizadas
 
